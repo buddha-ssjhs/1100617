@@ -1,13 +1,19 @@
+# MATRIX Micro controller
 
+The extension allows to control MATRIX Micro on PXT for Micro:bit with block-based programming and Python. This library is as a bridge connecting [MATRIX Robotics system](https://matrixrobotics.com/) alongside with [Micro:bit](https://microbit.org/).
+
+## Basic usage
+
+Please check https://matrix-robotics.github.io/pxt-MatrixMicro/
 
 ## Use as Extension
 
 This repository can be added as an **extension** in MakeCode.
 
-* open []()
-* click on **New Project**
-* click on **Extensions** under the gearwheel menu
-* search for **https://github.com/KK-MatrixRobotics/MatrixMicro//** and import
+* Open [Microsoft MakeCode for micro:bit](https://makecode.microbit.org/)
+* Click on **New Project**
+* Click on **Extensions** under the gearwheel menu
+* Search for **https://github.com/Matrix-Robotics/pxt-MatrixMicro/** and import
 
 ## License
 
@@ -18,5 +24,5 @@ MIT
 * for PXT/microbit
 
 ```package
-MatrixMicro=github:KK-MatrixRobotics/MatrixMicro
+MatrixMicro=github:Matrix-Robotics/pxt-MatrixMicro
 ```
