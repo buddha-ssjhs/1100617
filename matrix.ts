@@ -1,16 +1,16 @@
-enum D_port{
+enum D_PORT{
     D1 = 0,
     D2 = 1
   }
-enum M_port{
+enum M_PORT{
     M1 = 0,
     M2 = 1
 }
-enum RC_port{
+enum RC_PORT{
     RC1 = 0,
     RC2 = 1
 }
-enum A_port{
+enum A_PORT{
     A1 = 0,
     A2 = 1
 }
@@ -48,12 +48,12 @@ namespace Matrix{
     Init()
 
     /**
-     *Read data from D1 or D2
+     *read data from D1 or D2
      *@param pin [0-1] choose D1 or D2; eg: 0, 1
     */
-    //% block=ReadPin block="Read logic from |%pin|"
+    //%block="read logic from |%pin|"
     //% weight=98 %blockID="Matrix_Dread"
-    export function dread(pin: D_port): boolean{
+    export function dread(pin: D_PORT): boolean{
         let Dpin = 0
 
         if (pin) {
@@ -76,10 +76,10 @@ namespace Matrix{
      *@param ch [0-1] choose M1 or M2; eg: 0, 1
      *@param sp [-100-100] set motor speed; eg: 0, -90
     */
-    //%block="DC Motor |%ch| Speed |%sp|"
+    //%block="DC motor |%ch| speed |%sp|"
     //%weight=93 %blockID="Maxrix_Motor"
     //% sp.min=-100 sp.max=100
-    export function motor(ch: M_port, sp: number): void{
+    export function motor(ch: M_PORT, sp: number): void{
         
         let pwm = pins.map(Math.abs(sp), 0, 100, 0, 255)
 
@@ -115,13 +115,13 @@ namespace Matrix{
 
 
     /**
-     *Set RC Servo Angle
+     *set RC servo angle
      *@param port [0-1] choose RC1 or RC2; eg: 0, 1
     */
-    //%block="RC Servo |%port| Angle |%angle|"
+    //%block="RC servo |%port| angle |%angle|"
     //%weight=95 %blockID="Matrix_Servo"
     //% angle.min=0 angle.max=180
-    export function servo(port: RC_port, angle: number): void{
+    export function servo(port: RC_PORT, angle: number): void{
 
         if (port) {
             pins.servoWritePin(AnalogPin.P2, angle)
@@ -133,11 +133,11 @@ namespace Matrix{
     }
 
     /**
-     *Release All Servo Motor
+     *release all servo motor
     */
-    //%block="RC Servo Release"
+    //%block="RC servo release"
     //%weight=94 %blockID="Matrix Servo Release"
-    export function servo_release(): void{
+    export function servoRelease(): void{
 
         control.waitMicros(150000)
 
@@ -149,12 +149,12 @@ namespace Matrix{
     }
 
     /**
-     *Read distance from Ultrasonic Sensor
+     *read distance from ultrasonic sensor
      *@param port [0-1] choose D1 or D2; eg: 0, 1
     */
-    //%block="Ultrasonic Sensor |%port|"
+    //%block="ultrasonic sensor |%port|"
     //%weight=97 %blockID="Matrix_Ultrasonic"
-    export function Ultrasonic(port: D_port): number{
+    export function ultrasonic(port: D_PORT): number{
 
         if (port) {
             return (SR04.distance(DigitalPin.P12, DigitalPin.P15))
@@ -166,12 +166,12 @@ namespace Matrix{
     }
 
     /**
-     *Read Analog Port
+     *read analog port
      *@param ch [0-1] choose A1 or A2; eg: 0, 1
     */
-    //%block="Read data from |%ch|"
+    //%block="read data from |%ch|"
     //%weight=96 %blockID="Matrix_ADC"
-    export function ADC(ch: A_port): number{
+    export function readADC(ch: A_PORT): number{
 
         let data = 0
 
@@ -187,18 +187,18 @@ namespace Matrix{
     }
 
     /**
-     *Set Matrix LED RGB
+     *set LED RGB
      *@param led [0-1] set the displayed LED; eg: 0,1
      *@param r [0-255] set LED Red brightness; eg: 0,225
      *@param g [0-255] set LED Green brightness; eg: 0,225
      *@param b [0-255] set LED Blue brightness; eg: 0,225
     */
-    //%block="Matrix LED%led R%r G%g B%b"
-    //%weight=99 %blockID="Matrix_RGB"
+    //%block="LED%led R%r G%g B%b"
+    //%weight=99 %blockID="Matrix_LED"
     //% r.min=0 r.max=255
     //% g.min=0 g.max=255
     //% b.min=0 b.max=255
-    export function LED(led: LED, r: number, g: number, b: number): void{
+    export function showLED(led: LED, r: number, g: number, b: number): void{
         
         let rgb = r * 256 * 256 + g * 256 + b
         

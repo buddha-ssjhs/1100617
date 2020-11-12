@@ -1,139 +1,117 @@
-function Analog_Test () {
+function analogTest() {
     basic.showLeds(`
         . # # # .
         # . . . #
         # # # # #
         # . . . #
         # . . . #
-        `)
-    basic.showString("A1:")
-    basic.showNumber(Math.ceil(Matrix.ADC(A_port.A1) / 100))
-    basic.showString("A2:")
-    basic.showNumber(Math.ceil(Matrix.ADC(A_port.A2) / 100))
-    Matrix.servo(RC_port.RC1, 180)
-    Matrix.servo(RC_port.RC2, 0)
-    basic.pause(100)
-    basic.showString("A1:")
-    basic.showNumber(Math.ceil(Matrix.ADC(A_port.A1) / 100))
-    basic.showString("A2:")
-    basic.showNumber(Math.ceil(Matrix.ADC(A_port.A2) / 100))
+        `);
+    basic.showString("A1:");
+    basic.showNumber(Math.ceil(Matrix.ADC(A_PORT.A1) / 100));
+    basic.showString("A2:");
+    basic.showNumber(Math.ceil(Matrix.ADC(A_PORT.A2) / 100));
+    Matrix.servo(RC_PORT.RC1, 180);
+    Matrix.servo(RC_PORT.RC2, 0);
+    basic.pause(100);
+    basic.showString("A1:");
+    basic.showNumber(Math.ceil(Matrix.ADC(A_PORT.A1) / 100));
+    basic.showString("A2:");
+    basic.showNumber(Math.ceil(Matrix.ADC(A_PORT.A2) / 100));
 }
-function Motor_Test () {
+function motorTest() {
     basic.showLeds(`
         # . . . #
         # # . # #
         # . # . #
         # . . . #
         # . . . #
-        `)
-    Matrix.motor(M_port.M1, 100)
-    Matrix.motor(M_port.M2, 100)
-    basic.pause(500)
-    Matrix.motor(M_port.M1, -100)
-    Matrix.motor(M_port.M2, -100)
-    basic.pause(500)
-    Matrix.motor(M_port.M1, 0)
-    Matrix.motor(M_port.M2, 0)
-    basic.pause(100)
+        `);
+    Matrix.motor(M_PORT.M1, 100);
+    Matrix.motor(M_PORT.M2, 100);
+    basic.pause(500);
+    Matrix.motor(M_PORT.M1, -100);
+    Matrix.motor(M_PORT.M2, -100);
+    basic.pause(500);
+    Matrix.motor(M_PORT.M1, 0);
+    Matrix.motor(M_PORT.M2, 0);
+    basic.pause(100);
 }
-function Ultrasonic_Test () {
+function ultrasonicTest() {
     basic.showLeds(`
         # . . . #
         # . . . #
         # . . . #
         # . . . #
         . # # # .
-        `)
-    basic.pause(500)
-    basic.showLeds(`
+        `);
+    basic.pause(500);
+    if (Matrix.ultrasonic(D_PORT.D1) > 5) {
+        basic.showLeds(`
         . . # # #
         . # # . .
         # . # # #
         . # . . #
         . . # # #
-        `)
-    while (Matrix.Ultrasonic(D_port.D1) > 5) {
-
+        `);
     }
 }
-function RGBLED_Test () {
+function ledTest() {
     basic.showLeds(`
         # # # . .
         # . . # .
         # # # . .
         # . # . .
         # . . # .
-        `)
+        `);
     for (let index = 0; index <= 255; index++) {
-        Matrix.LED(
-        LED.RGB1,
-        index,
-        255 - index,
-        0
-        )
-        Matrix.LED(
-        LED.RGB2,
-        index,
-        255 - index,
-        0
-        )
-        basic.pause(5)
+        Matrix.showLED(LED.RGB1, index, 255 - index, 0);
+        Matrix.showLED(LED.RGB2, index, 255 - index, 0);
+        basic.pause(5);
     }
     for (let index = 0; index <= 255; index++) {
-        Matrix.LED(
-        LED.RGB1,
-        255 - index,
-        0,
-        index
-        )
-        Matrix.LED(
-        LED.RGB2,
-        255 - index,
-        0,
-        index
-        )
-        basic.pause(5)
+        Matrix.showLED(LED.RGB1, 255 - index, 0, index);
+        Matrix.showLED(LED.RGB2, 255 - index, 0, index);
+        basic.pause(5);
     }
     for (let index = 0; index <= 255; index++) {
-        Matrix.LED(
-        LED.RGB1,
-        0,
-        index,
-        255 - index
-        )
-        Matrix.LED(
-        LED.RGB2,
-        0,
-        index,
-        255 - index
-        )
-        basic.pause(5)
+        Matrix.showLED(LED.RGB1, 0, index, 255 - index);
+        Matrix.showLED(LED.RGB2, 0, index, 255 - index);
+        basic.pause(5);
     }
 }
-function Servo_Test () {
+function servoTest() {
     basic.showLeds(`
         . # # # .
         # . . . .
         . # # # .
         . . . . #
         . # # # .
-        `)
-    Matrix.servo(RC_port.RC1, 90)
-    Matrix.servo(RC_port.RC2, 90)
-    basic.pause(500)
+        `);
+    Matrix.servo(RC_PORT.RC1, 90);
+    Matrix.servo(RC_PORT.RC2, 90);
+    basic.pause(500);
 }
-function Next () {
+function releaseServoTest() {
+    basic.showLeds(`
+        . # # # .
+        . # . . #
+        . # # # .
+        . # . # .
+        . # . . #
+        `);
+    Matrix.releaseServo();
+    basic.pause(500);
+}
+function next() {
     basic.showLeds(`
         . . # . .
         . # . . .
         # # # # #
         . # . . .
         . . # . .
-        `)
-    while (!(Matrix.dread(D_port.D2))) {
-
-    }
-    basic.pause(500)
+        `);
+    while (!Matrix.dread(D_PORT.D2)) {}
+    basic.pause(500);
 }
 basic.showLeds(`
     # . . . #
@@ -141,41 +119,36 @@ basic.showLeds(`
     # . # . #
     # . . . #
     # . . . #
-    `)
-Next()
-Motor_Test()
-Next()
-Servo_Test()
-Next()
-Analog_Test()
-Next()
-Ultrasonic_Test()
-Next()
-RGBLED_Test()
-Next()
+    `);
+next();
+motorTest();
+next();
+servoTest();
+next();
+releaseServoTest();
+next();
+analogTest();
+next();
+ultrasonicTest();
+next();
+ledTest();
+next();
 basic.forever(function () {
-    music.startMelody(music.builtInMelody(Melodies.PowerUp), MelodyOptions.Once)
+    music.startMelody(
+        music.builtInMelody(Melodies.PowerUp),
+        MelodyOptions.Once
+    );
     basic.showLeds(`
         # # # # #
         # # # # #
         # # # # #
         # # # # #
         # # # # #
-        `)
-    Matrix.LED(
-    LED.RGB1,
-    0,
-    0,
-    0
-    )
-    Matrix.LED(
-    LED.RGB2,
-    0,
-    0,
-    0
-    )
-    basic.pause(1000)
+        `);
+    Matrix.showLED(LED.RGB1, 0, 0, 0);
+    Matrix.showLED(LED.RGB2, 0, 0, 0);
+    basic.pause(1000);
     while (true) {
-        basic.showString("RESET")
+        basic.showString("RESET");
     }
-})
+});
