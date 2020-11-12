@@ -1,6 +1,6 @@
 # MATRIX Micro controller
 
-The extension allows to control MATRIX Micro on PXT for Micro:bit with block-based programming and Python. This library is as a bridge connecting [MATRIX Robotics system](https://matrixrobotics.com/) alongside with [Micro:bit](https://microbit.org/).
+The extension allows to control MATRIX Micro on PXT for micro:bit with block-based programming and Python. This library is as a bridge connecting [MATRIX Robotics system](https://matrixrobotics.com/) alongside with [micro:bit](https://microbit.org/).
 
 ## Basic usage
 
