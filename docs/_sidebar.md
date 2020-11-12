@@ -1,3 +1,3 @@
 * [Overview](/)
-* [Motor](motor.md)
-* [LED matrix](led.md)
+* [Input](input.md)
+* [Output](output.md)
