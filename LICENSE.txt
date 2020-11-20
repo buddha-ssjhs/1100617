@@ -1,4 +1,4 @@
-Copyright (c) Microsoft Corporation
+Copyright (c) KK Intelligence Technology Inc.
 
 All rights reserved.
 
