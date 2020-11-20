@@ -4,7 +4,7 @@ enum D_PORT{
   }
 enum M_PORT{
     M1 = 0,
-    M2 = 1
+    M2 = 2
 }
 enum RC_PORT{
     RC1 = 0,
@@ -33,10 +33,9 @@ namespace Matrix{
         pins.digitalWritePin(DigitalPin.P16, 0)
         pins.analogWritePin(AnalogPin.P0, 0)
         
-        dcmotor.setPWM(0, 0)
-        dcmotor.setPWM(1, 0)
-        dcmotor.setPWM(2, 0)
-        dcmotor.setPWM(3, 0)
+        pins.digitalWritePin(DigitalPin.P16, 1)// pwm enable
+
+        PCA9633.init()
 
         defl.setPixelColor(0, 0x000000)
         defl.setPixelColor(1, 0x000000)
@@ -44,7 +43,6 @@ namespace Matrix{
     }
 
     let defl = WS2812B.create(DigitalPin.P8, 2, RGB_MODE.RGB)
-    let dcmotor = PCA9633.init()
     Init()
 
     /**
@@ -73,7 +71,7 @@ namespace Matrix{
 
     /**
      *DC Motor
-     *@param ch [0-1] choose M1 or M2; eg: 0, 1
+     *@param ch [0, 2] choose M1 or M2; eg: 0, 2
      *@param sp [-100-100] set motor speed; eg: 0, -90
     */
     //%block="DC motor |%ch| speed |%sp|"
@@ -83,34 +81,13 @@ namespace Matrix{
         
         let pwm = pins.map(Math.abs(sp), 0, 100, 0, 255)
 
-        if (sp == 0){
-            pins.digitalWritePin(DigitalPin.P16, 0)
+        if (sp >= 0){    
+            PCA9633.setPWM(ch, pwm)
         }
-        else {
-            pins.digitalWritePin(DigitalPin.P16, 1)
+        else{  
+            PCA9633.setPWM(ch+1, pwm)
         }
 
-        if (ch) {
-            if (sp > 0) {
-                dcmotor.setPWM(3, 0)
-                dcmotor.setPWM(2, pwm)
-            }
-            else {
-                dcmotor.setPWM(2, 0)
-                dcmotor.setPWM(3, pwm)
-            } 
-        }
-        else {
-            if (sp > 0) {
-                dcmotor.setPWM(1, 0)
-                dcmotor.setPWM(0, pwm)
-            }
-            else {
-                dcmotor.setPWM(0, 0)
-                dcmotor.setPWM(1, pwm)
-            }
-
-        }
     }
 
 
