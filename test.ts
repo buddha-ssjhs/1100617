@@ -7,16 +7,16 @@ function analogTest() {
         # . . . #
         `);
     basic.showString("A1:");
-    basic.showNumber(Math.ceil(Matrix.ADC(A_PORT.A1) / 100));
+    basic.showNumber(Math.ceil(Matrix.readADC(A_PORT.A1) / 100));
     basic.showString("A2:");
-    basic.showNumber(Math.ceil(Matrix.ADC(A_PORT.A2) / 100));
+    basic.showNumber(Math.ceil(Matrix.readADC(A_PORT.A2) / 100));
     Matrix.servo(RC_PORT.RC1, 180);
     Matrix.servo(RC_PORT.RC2, 0);
     basic.pause(100);
     basic.showString("A1:");
-    basic.showNumber(Math.ceil(Matrix.ADC(A_PORT.A1) / 100));
+    basic.showNumber(Math.ceil(Matrix.readADC(A_PORT.A1) / 100));
     basic.showString("A2:");
-    basic.showNumber(Math.ceil(Matrix.ADC(A_PORT.A2) / 100));
+    basic.showNumber(Math.ceil(Matrix.readADC(A_PORT.A2) / 100));
 }
 function motorTest() {
     basic.showLeds(`
@@ -99,7 +99,7 @@ function releaseServoTest() {
         . # . # .
         . # . . #
         `);
-    Matrix.releaseServo();
+    Matrix.servoRelease();
     basic.pause(500);
 }
 function next() {
