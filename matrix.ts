@@ -83,9 +83,11 @@ namespace Matrix{
 
         if (sp >= 0){    
             PCA9633.setPWM(ch, pwm)
+            PCA9633.setPWM(ch+1, 0)
         }
         else{  
             PCA9633.setPWM(ch+1, pwm)
+            PCA9633.setPWM(ch, 0)
         }
 
     }
