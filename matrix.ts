@@ -44,7 +44,12 @@ namespace Matrix{
 
     let defl = WS2812B.create(DigitalPin.P8, 2, RGB_MODE.RGB)
     Init()
-
+    serial.onDataReceived(serial.delimiters(Delimiters.NewLine), function on_data_received() {
+        if ("M" == serial.readUntil(serial.delimiters(Delimiters.NewLine))) {
+            Matrix.showLED(LED.RGB1, 0, 0, 255)
+        }
+        
+    })
     /**
      *read data from D1 or D2
      *@param pin [0-1] choose D1 or D2; eg: 0, 1
