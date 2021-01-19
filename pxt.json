@@ -11,6 +11,7 @@
     "files": [
         "README.md",
         "matrix.ts",
+        "matrix_modules/Serial_IT.ts",
         "matrix_modules/PCA9633.ts",
         "matrix_modules/HC-SR04.ts",
         "matrix_modules/ADS1015.ts",

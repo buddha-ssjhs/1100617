@@ -44,12 +44,26 @@ namespace Matrix{
 
     let defl = WS2812B.create(DigitalPin.P8, 2, RGB_MODE.RGB)
     Init()
+
     serial.onDataReceived(serial.delimiters(Delimiters.NewLine), function on_data_received() {
-        if ("M" == serial.readUntil(serial.delimiters(Delimiters.NewLine))) {
-            Matrix.showLED(LED.RGB1, 0, 0, 255)
-        }
+        let buff = serial.readUntil(serial.delimiters(Delimiters.NewLine))
+
+        let getFlag = (buff.length == 8) ? true : false
+        let setFlag = (buff.length == 10) ? true : false
         
+        if((buff.indexOf('MICRO') == 0) && (getFlag || setFlag)){
+
+            let func = Serial_IT.pInt(buff.replace('MICRO', ''))
+            if(setFlag && func > 0){
+                let para = Serial_IT.pInt(buff.replace('MICRO', ''))
+                Serial_IT.setMicro(func, para-1)
+            }
+            else if(getFlag && func > 0){
+                //serial.writeString(Serial_IT.getMicro(func-1))
+            }
+        }
     })
+
     /**
      *read data from D1 or D2
      *@param pin [0-1] choose D1 or D2; eg: 0, 1
