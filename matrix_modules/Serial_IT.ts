@@ -2,7 +2,8 @@ namespace Serial_IT{
 
     export function pInt(str: string): number {
         for (let i = 0; i < 2; i ++) {
-            if (!(parseInt(str.charAt(i), 16))){
+            let tryy = parseInt(str.charAt(i), 16)
+            if (!(tryy) && (tryy != 0)) {
                 return -1
             }
         }
