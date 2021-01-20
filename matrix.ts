@@ -52,10 +52,12 @@ namespace Matrix{
         let setFlag = (buff.length == 9) ? true : false
         
         if((buff.indexOf('MICRO') == 0) && (getFlag || setFlag)){
-            basic.showString(buff)
+            
             let func = Serial_IT.pInt(buff.replace('MICRO', ''))
+            basic.showNumber(func)
             if(setFlag && func > 0){
                 let para = Serial_IT.pInt(buff.replace('MICRO', ''))
+                basic.showNumber(para)
                 Serial_IT.setMicro(func, para-1)
             }
             else if(getFlag && func > 0){
