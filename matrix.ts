@@ -48,8 +48,8 @@ namespace Matrix{
     serial.onDataReceived(serial.delimiters(Delimiters.NewLine), function on_data_received() {
         let buff = serial.readUntil(serial.delimiters(Delimiters.NewLine))
         
-        let getFlag = (buff.length == 8) ? true : false
-        let setFlag = (buff.length == 10) ? true : false
+        let getFlag = (buff.length == 7) ? true : false
+        let setFlag = (buff.length == 9) ? true : false
         
         if((buff.indexOf('MICRO') == 0) && (getFlag || setFlag)){
             basic.showString(buff)
