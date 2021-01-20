@@ -21,6 +21,14 @@ namespace Serial_IT{
                     Matrix.motor(M_PORT.M1, para);
                 }
                 break;
+            case 2:
+                if(para > 127){
+                    Matrix.motor(M_PORT.M2, para-256);
+                }
+                else{
+                    Matrix.motor(M_PORT.M2, para);
+                }
+                break;
         }
   
     }

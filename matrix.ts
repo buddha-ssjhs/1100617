@@ -57,7 +57,6 @@ namespace Matrix{
             
             if(setFlag && func > 0){
                 let para = Serial_IT.pInt(buff.substr(7, 2))
-                basic.showNumber(para)
                 Serial_IT.setMicro(func, para-1)
             }
             else if(getFlag && func > 0){
