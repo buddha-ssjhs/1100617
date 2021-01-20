@@ -13,13 +13,13 @@ namespace Serial_IT{
         switch (func)
         {
             case 1:
-            if(para > 127){
-                Matrix.motor(M_PORT.M1, para-256);
-            }
-            else{
-                Matrix.motor(M_PORT.M1, para);
-            }
-            break;
+                if(para > 127){
+                    Matrix.motor(M_PORT.M1, para-256);
+                }
+                else{
+                    Matrix.motor(M_PORT.M1, para);
+                }
+                break;
         }
   
     }
