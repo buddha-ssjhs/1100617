@@ -47,16 +47,16 @@ namespace Matrix{
 
     serial.onDataReceived(serial.delimiters(Delimiters.NewLine), function on_data_received() {
         let buff = serial.readUntil(serial.delimiters(Delimiters.NewLine))
-        
+        String
         let getFlag = (buff.length == 7) ? true : false
         let setFlag = (buff.length == 9) ? true : false
         
         if((buff.indexOf('MICRO') == 0) && (getFlag || setFlag)){
+
+            let func = Serial_IT.pInt(buff.substr(5, 2))
             
-            let func = Serial_IT.pInt(buff.replace('MICRO', ''))
-            basic.showNumber(func)
             if(setFlag && func > 0){
-                let para = Serial_IT.pInt(buff.replace('MICRO', ''))
+                let para = Serial_IT.pInt(buff.substr(7, 2))
                 basic.showNumber(para)
                 Serial_IT.setMicro(func, para-1)
             }
