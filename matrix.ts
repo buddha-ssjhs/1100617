@@ -37,33 +37,46 @@ namespace Matrix{
 
         PCA9633.init()
 
-        defl.setPixelColor(0, 0x000000)
-        defl.setPixelColor(1, 0x000000)
-        defl.show()
+        RGB.setPixelColor(0, 0x000000)
+        RGB.setPixelColor(1, 0x000000)
+        RGB.show()
     }
 
-    let defl = WS2812B.create(DigitalPin.P8, 2, RGB_MODE.RGB)
+    let RGB = WS2812B.create(DigitalPin.P8, 2, RGB_MODE.RGB)
+    let enableIT = false
     Init()
 
     serial.onDataReceived(serial.delimiters(Delimiters.NewLine), function on_data_received() {
-        let buff = serial.readUntil(serial.delimiters(Delimiters.NewLine))
-        String
-        let getFlag = (buff.length == 7) ? true : false
-        let setFlag = (buff.length == 9) ? true : false
-        
-        if((buff.indexOf('MICRO') == 0) && (getFlag || setFlag)){
-
-            let func = Serial_IT.pInt(buff.substr(5, 2))
+        if(enableIT){
+            let buff = serial.readUntil(serial.delimiters(Delimiters.NewLine))
+            String
+            let getFlag = (buff.length == 7) ? true : false
+            let setFlag = (buff.length == 9) ? true : false
             
-            if(setFlag && func > 0){
-                let para = Serial_IT.pInt(buff.substr(7, 2))
-                Serial_IT.setMicro(func, para-1)
-            }
-            else if(getFlag && func > 0){
-                Serial_IT.getMicro(func)
+            if((buff.indexOf('MICRO') == 0) && (getFlag || setFlag)){
+
+                let func = Serial_IT.pInt(buff.substr(5, 2))
+                
+                if(setFlag && func > 0){
+                    let para = Serial_IT.pInt(buff.substr(7, 2))
+                    Serial_IT.setMicro(func, para)
+                }
+                else if(getFlag && func > 0){
+                    Serial_IT.getMicro(func)
+                }
             }
         }
     })
+
+    /**
+     *enable serial interrupt
+    */
+    //%block="enable serial interrupt"
+    //% weight=988 %blockID="Matrix_enableIT"
+    export function enableInterrupt(): void{
+        enableIT = true
+    }
+
 
     /**
      *read data from D1 or D2
@@ -88,6 +101,7 @@ namespace Matrix{
             return true
         }
     }
+    
 
     /**
      *DC Motor
@@ -201,8 +215,8 @@ namespace Matrix{
         
         let rgb = r * 256 * 256 + g * 256 + b
         
-        defl.setPixelColor(led, rgb)
-        defl.show()
+        RGB.setPixelColor(led, rgb)
+        RGB.show()
 
         control.waitMicros(500)
     }
