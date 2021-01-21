@@ -60,7 +60,7 @@ namespace Matrix{
                 Serial_IT.setMicro(func, para-1)
             }
             else if(getFlag && func > 0){
-                //serial.writeString(Serial_IT.getMicro(func-1))
+                Serial_IT.getMicro(func)
             }
         }
     })
