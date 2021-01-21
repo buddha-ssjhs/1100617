@@ -49,7 +49,7 @@ namespace Matrix{
     serial.onDataReceived(serial.delimiters(Delimiters.NewLine), function on_data_received() {
         if(enableIT){
             let buff = serial.readUntil(serial.delimiters(Delimiters.NewLine))
-            String
+            
             let getFlag = (buff.length == 7) ? true : false
             let setFlag = (buff.length == 9) ? true : false
             
