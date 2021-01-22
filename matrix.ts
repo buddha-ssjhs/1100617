@@ -70,8 +70,9 @@ namespace Matrix{
 
     /**
      *enable serial interrupt
+     * @param rate the new baud rate. eg: 115200
     */
-    //%block="enable serial interrupt, baud |%baud|"
+    //%block="enable serial interrupt|at baud %baud"
     //% weight=988 %blockID="Matrix_enableIT"
     export function enableInterrupt(baud: BaudRate): void{
         serial.setBaudRate(baud)
