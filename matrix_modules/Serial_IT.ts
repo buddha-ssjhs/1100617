@@ -30,10 +30,10 @@ namespace Serial_IT{
                 }
                 break;
             case 3:
-                pins.servoWritePin(AnalogPin.P2, para)
+                pins.servoWritePin(AnalogPin.P13, para)
                 break;
             case 4:
-                pins.servoWritePin(AnalogPin.P13, para)
+                pins.servoWritePin(AnalogPin.P2, para)
                 break;
             case 5:
                 pins.digitalWritePin(DigitalPin.P2, 0)
