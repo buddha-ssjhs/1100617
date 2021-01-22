@@ -36,8 +36,10 @@ namespace Serial_IT{
                 pins.servoWritePin(AnalogPin.P2, para)
                 break;
             case 5:
+                control.waitMicros(150000)
                 pins.digitalWritePin(DigitalPin.P2, 0)
                 pins.digitalWritePin(DigitalPin.P13, 0)
+                control.waitMicros(500000)
                 break;
         }
   
