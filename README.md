@@ -4,7 +4,45 @@ The extension allows to control MATRIX Micro on PXT for micro:bit with block-bas
 
 ## Basic usage
 
-Please check https://matrix-robotics.github.io/pxt-MatrixMicro/
+* Set Motor to 100% speed
+
+```blocks
+	  Matrix.motor(M_PORT.M1, 100);
+    Matrix.motor(M_PORT.M2, 100);
+```
+
+* Set RGB LED 
+
+```blocks
+    Matrix.showLED(LED.RGB1, 255, 255, 255);
+    Matrix.showLED(LED.RGB2, 255, 255, 255);
+```
+
+* Get 10-bits analog voltage data from port A1
+
+```blocks
+    Matrix.readADC(A_PORT.A1)
+```
+
+* Get digital logic from port D2
+
+```blocks
+    Matrix.dread(D_PORT.D2)
+```
+
+
+* Set RC Servo Angle to 90
+
+```blocks
+    Matrix.servo(RC_PORT.RC1, 90);
+    Matrix.servo(RC_PORT.RC2, 90);
+```
+
+* Get distance data from port D1
+
+```blocks
+    Matrix.ultrasonic(D_PORT.D1)
+```
 
 ## Use as Extension
 
