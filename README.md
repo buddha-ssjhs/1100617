@@ -7,7 +7,7 @@ The extension allows to control MATRIX Micro on PXT for micro:bit with block-bas
 * Set Motor to 100% speed
 
 ```blocks
-	  Matrix.motor(M_PORT.M1, 100);
+    Matrix.motor(M_PORT.M1, 100);
     Matrix.motor(M_PORT.M2, 100);
 ```
 
