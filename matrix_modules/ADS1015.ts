@@ -11,17 +11,21 @@ namespace ADS1015{
     const ADS1015_GAIN_1 = 0x04
     const ADS1015_GAIN_2 = 0x02
     const ADS1015_GAIN_3 = 0x00
-    
 
-    let initialized = false
+    function i2cwrite(addr: number, reg: number): void {
+        let buf = pins.createBuffer(1);
+        buf[0] = reg;
+        pins.i2cWriteBuffer(addr, buf);
+    }
 
-    function i2cwrite(addr: number, reg: number, value1: number, value2: number): void {
+    function i2cwrite2(addr: number, reg: number, value1: number, value2: number): void {
         let buf = pins.createBuffer(3);
         buf[0] = reg;
         buf[1] = value1;
         buf[2] = value2;
         pins.i2cWriteBuffer(addr, buf);
     }
+
 
 	/**
      *ReadData From ADS1015
@@ -49,9 +53,11 @@ namespace ADS1015{
         //set gain in 3mV/FS
         val += ADS1015_GAIN_3;
 
-        i2cwrite(ADS1015_ADDRESS,0x01, val, 0x83);
+        i2cwrite2(ADS1015_ADDRESS, 0x01, val, 0x83);
+
+        control.waitMicros(5000);
         
-        i2cwrite(ADS1015_ADDRESS, 0x00, 0x00, 0x00);
+        i2cwrite(ADS1015_ADDRESS, 0x00);
 
         control.waitMicros(500);
 
