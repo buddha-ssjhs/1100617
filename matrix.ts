@@ -107,7 +107,7 @@ namespace Matrix{
     
 
     /**
-     *DC Motor
+     *set speed of DC Motor
      *@param ch [0, 2] choose M1 or M2; eg: 0, 2
      *@param sp [-100-100] set motor speed; eg: 0, -90
     */
@@ -165,7 +165,7 @@ namespace Matrix{
     }
 
     /**
-     *read distance from ultrasonic sensor
+     *read distance from ultrasonic sensor(cm)
      *@param port [0-1] choose D1 or D2; eg: 0, 1
     */
     //%block="ultrasonic sensor |%port|"
@@ -182,7 +182,7 @@ namespace Matrix{
     }
 
     /**
-     *read analog port
+     *read analog port(10-bits)
      *@param ch [0-1] choose A1 or A2; eg: 0, 1
     */
     //%block="read data from |%ch|"
