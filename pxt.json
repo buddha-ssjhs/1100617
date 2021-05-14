@@ -1,6 +1,6 @@
 {
-    "name": "MATRIX Micro",
-    "version": "1.0.30",
+    "name": "MatrixMicro",
+    "version": "1.0.31",
     "description": "The extension for MATRIX Micro controller and micro:bit PXT target",
     "license": "MIT",
     "dependencies": {
@@ -16,8 +16,8 @@
         "matrix_modules/HC-SR04.ts",
         "matrix_modules/ADS1015.ts",
         "matrix_modules/WS2812B.ts",
-        "_locales/zh-tw/Matrix Micro-jsdoc-strings.json",
-        "_locales/zh-tw/Matrix Micro-strings.json"
+        "_locales/zh-tw/MatrixMicro-jsdoc-strings.json",
+        "_locales/zh-tw/MatrixMicro-strings.json"
     ],
     "testFiles": [
         "test.ts"
